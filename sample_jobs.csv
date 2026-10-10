@@ -1,0 +1,122 @@
+ad_id,collection_date,source_type,job_category,city,language,salary_min_bdt,salary_max_bdt,employment_type,asks_money,unrealistic_salary,no_company_info,only_chat_contact,no_experience_claim,data_origin
+JA001,2026-09-27,Job Portal,Data Entry,Remote,English,18000,32000,Part-time,0,0,0,0,0,synthetic
+JA002,2026-09-12,Social Media Group,Data Entry,Mymensingh,Bangla-English,100000,145000,Full-time,0,1,0,0,0,synthetic
+JA003,2026-09-15,Job Portal,Teaching,Dhaka,English,15000,28000,Internship,0,0,0,0,0,synthetic
+JA004,2026-08-16,Company Website,Online Income,Remote,Bangla,14000,22000,Part-time,1,0,0,1,0,synthetic
+JA005,2026-09-15,Job Portal,Accounting, dhaka ,English,39000,42000,Internship,0,0,0,0,0,synthetic
+JA006,2026-09-20,Social Media Group,Marketing & Sales,Mymensingh,English,60000,80000,Contract,0,1,1,0,1,synthetic
+JA007,2026-08-26,Job Portal,Customer Service,Barishal,Bangla-English,19000,26000,Internship,0,0,0,0,0,synthetic
+JA008,2026-09-24,Company Website,Software & IT,Dhaka,English,,,Full-time,0,0,0,0,0,synthetic
+JA009,2026-09-21,Job Portal,Data Entry,Dhaka,Bangla,20000,26000,Contract,0,0,0,0,0,synthetic
+JA010,2026-09-23,Social Media Group,Teaching,Dhaka,English,33000,37000,Part-time,0,0,0,0,0,synthetic
+JA011,2026-08-03,Social Media Group,Customer Service,Sylhet,Bangla-English,15000,18000,Contract,0,0,0,0,0,synthetic
+JA012,2026-08-06,Messaging Channel,Accounting,Remote,Bangla-English,54000,65000,Part-time,1,0,1,0,1,synthetic
+JA013,2026-08-27,Social Media Group,Marketing & Sales,Barishal,Bangla-English,29000,31000,Part-time,0,0,0,1,0,synthetic
+JA014,2026-09-13,Social Media Group,Marketing & Sales,Khulna,Bangla-English,28000,40000,Freelance,0,0,0,0,0,synthetic
+JA015,2026-09-16,Job Portal,Accounting,Dhaka,Bangla-English,54000,58000,Internship,0,0,0,0,0,synthetic
+JA016,2026-09-06,Job Portal,Accounting,Remote,Bangla-English,85000,105000,Internship,0,1,0,0,0,synthetic
+JA017,2026-09-04,Company Website,Accounting,Dhaka,English,42000,54000,Part-time,0,0,0,0,0,synthetic
+JA018,2026-09-06,social media group,Data Entry,Chattogram,Bangla,13000,19000,Full-time,0,0,0,0,0,synthetic
+JA019,2026-09-28,Messaging Channel,Marketing & Sales,Chattogram,English,24000,36000,Internship,0,0,0,0,0,synthetic
+JA020,2026-09-17,Social Media Group,Teaching,Rajshahi,English,18000,30000,Contract,0,0,0,0,0,synthetic
+JA021,2026-08-11,Social Media Group,Data Entry,Remote,English,13000,19000,Part-time,1,0,1,0,0,synthetic
+JA022,2026-08-19,Job Portal,Online Income,Sylhet,English,,,Freelance,0,0,1,0,0,synthetic
+JA023,2026-08-08,Job Portal,Marketing & Sales,Dhaka,English,43000,49000,Internship,0,0,0,0,0,synthetic
+JA024,2026-09-25,Company Website,Marketing & Sales,Dhaka,Bangla-English,34000,41000,Full-time,0,0,0,0,0,synthetic
+JA025,2026-08-26,Messaging Channel,Teaching,Remote,English,27000,40000,Contract,0,0,0,0,0,synthetic
+JA026,2026-09-05,Job Portal,Accounting,Dhaka,English,37000,41000,Internship,0,0,0,0,0,synthetic
+JA027,2026-09-23,Company Website,Teaching,Remote,Bangla,145000,180000,Freelance,1,1,1,1,0,synthetic
+JA028,2026-08-10,Company Website,Marketing & Sales,Remote,Bangla-English,42000,49000,Part-time,0,0,0,0,0,synthetic
+JA029,2026-08-25,Messaging Channel,Customer Service,Mymensingh,Bangla,135000,185000,Part-time,1,1,1,0,0,synthetic
+JA030,2026-08-07,Company Website,Software & IT,Remote,Bangla-English,82000,85000,Part-time,0,0,0,0,1,synthetic
+JA031,2026-08-16,Job Portal,Customer Service,Remote,Bangla-English,16000,23000,Part-time,0,0,0,0,0,synthetic
+JA032,2026-08-08,Job Portal,Accounting,Chattogram,English,44000,50000,Internship,0,0,0,0,0,synthetic
+JA033,2026-09-25,Job Portal,Online Income,Khulna,Bangla-English,13000,26000,Freelance,0,0,0,0,0,synthetic
+JA034,2026-09-21,Job Portal,data entry,Dhaka,English,22000,28000,Part-time,0,0,0,0,0,synthetic
+JA035,2026-09-25,Social Media Group,Online Income,Remote,Bangla-English,,,Part-time,0,0,1,1,1,synthetic
+JA036,2026-09-14,Job Portal,Marketing & Sales,Rangpur,English,39000,50000,Full-time,0,0,1,0,0,synthetic
+JA037,2026-08-12,Social Media Group,Data Entry,Remote,Bangla-English,20000,26000,Part-time,0,0,0,0,0,synthetic
+JA038,2026-08-14,Social Media Group,Online Income,Dhaka,Bangla,,,Contract,0,0,0,0,0,synthetic
+JA039,2026-09-16,Job Portal,Marketing & Sales,Rangpur,English,39000,46000,Contract,0,0,0,0,0,synthetic
+JA040,2026-09-02,Social Media Group,Data Entry,Dhaka,Bangla-English,120000,160000,Internship,1,1,0,1,1,synthetic
+JA041,2026-08-12,Company Website,Teaching,Dhaka,Bangla-English,30000,37000,Part-time,0,0,0,0,0,synthetic
+JA042,2026-09-07,Job Portal,Accounting,Mymensingh,Bangla-English,38000,40000,Part-time,0,0,0,0,0,synthetic
+JA043,2026-08-20,Job Portal,Online Income,Dhaka,Bangla-English,15000,27000,Internship,0,0,0,0,0,synthetic
+JA044,2026-08-27,Messaging Channel,Teaching,Dhaka,English,16000,22000,Internship,0,0,0,0,0,synthetic
+JA045,2026-08-10,Job Portal,Teaching,Mymensingh,English,30000,40000,Internship,0,0,0,0,0,synthetic
+JA046,2026-09-23,Company Website,Data Entry,Chattogram,Bangla,13000,20000,Part-time,0,0,0,1,1,synthetic
+JA047,2026-09-18,Job Portal,Online Income,Khulna,English,17000,22000,Contract,0,0,0,0,0,synthetic
+JA048,2026-08-25,Job Portal,Teaching,Sylhet,Bangla-English,21000,34000,Internship,0,0,0,0,0,synthetic
+JA049,2026-09-21,Job Portal,Teaching,Chattogram,Bangla-English,19000,31000,Contract,0,0,0,0,0,synthetic
+JA050,2026-08-20,Job Portal,Marketing & Sales,Remote,English,32000,39000,Contract,0,0,0,0,0,synthetic
+JA051,2026-08-02,Job Portal,Teaching,Mymensingh,English,,,Internship,0,0,0,0,0,synthetic
+JA052,2026-08-03,Company Website,Data Entry,Remote,English,,,Full-time,0,0,0,1,0,synthetic
+JA053,2026-08-15,Social Media Group,Data Entry,Rajshahi,Bangla,95000,140000,Internship,0,1,0,0,0,synthetic
+JA054,2026-08-16,Messaging Channel,Accounting,Rajshahi,Bangla-English,49000,58000,Full-time,0,0,0,0,0,synthetic
+JA055,2026-09-04,Company Website,Online Income,Dhaka,Bangla-English,140000,170000,Full-time,1,1,1,1,0,synthetic
+JA056,2026-08-12,Job Portal,Online Income,Chattogram,Bangla,100000,130000,Full-time,1,1,0,1,1,synthetic
+JA057,2026-08-17,Social Media Group,Customer Service,Dhaka,Bangla-English,26000,35000,Freelance,0,0,0,0,0,synthetic
+JA058,2026-08-17,Job Portal,Data Entry,Rangpur,Bangla,145000,175000,Internship,1,1,1,0,1,synthetic
+JA059,2026-09-07,Job Portal,Software & IT,Rajshahi,English,85000,120000,Part-time,0,1,0,0,0,synthetic
+JA060,2026-09-26,Job Portal,Marketing & Sales,Dhaka,English,48000,61000,Internship,0,0,0,0,0,synthetic
+JA061,2026-08-19,Job Portal,Data Entry,Chattogram,Bangla,17000,20000,Full-time,0,0,0,0,0,synthetic
+JA062,2026-08-24,Messaging Channel,Marketing & Sales,Barishal,Bangla-English,18000,20000,Full-time,0,0,0,0,0,synthetic
+JA063,2026-09-05,Social Media Group,Customer Service,Chattogram,Bangla,15000,26000,Freelance,0,0,0,0,0,synthetic
+JA064,2026-09-15,Job Portal,Online Income,Chattogram,English,70000,120000,Freelance,0,1,0,1,0,synthetic
+JA065,2026-09-25,Social Media Group,Teaching,Dhaka,Bangla-English,37000,43000,Contract,0,0,0,0,0,synthetic
+JA066,2026-09-28,Social Media Group,Customer Service,Dhaka,Bangla,120000,195000,Internship,1,1,1,1,1,synthetic
+JA067,2026-09-02,Job Portal,Software & IT,Dhaka,Bangla-English,83000,95000,Internship,0,0,0,0,0,synthetic
+JA068,2026-09-27,Social Media Group,Software & IT,Sylhet,English,100000,106000,Internship,0,0,0,0,0,synthetic
+JA069,2026-08-24,Job Portal,Customer Service,Dhaka,Bangla,24000,32000,Part-time,0,0,0,0,0,synthetic
+JA070,2026-09-04,Company Website,Customer Service,Remote,English,16000,19000,Internship,0,0,0,0,0,synthetic
+JA071,2026-08-27,Job Portal,Teaching,Remote,English,125000,150000,Contract,0,1,0,0,0,synthetic
+JA072,2026-09-22,Job Portal,Online Income,Khulna,Bangla,,,Freelance,1,1,0,0,0,synthetic
+JA073,2026-08-06,Job Portal,Marketing & Sales,Dhaka,Bangla-English,,,Internship,0,0,0,0,0,synthetic
+JA074,2026-09-09,Job Portal,Accounting,Khulna,Bangla-English,30000,41000,Internship,0,0,0,0,0,synthetic
+JA075,2026-09-28,Job Portal,Software & IT,Dhaka,Bangla-English,93000,99000,Internship,0,0,0,0,0,synthetic
+JA076,2026-09-23,Job Portal,Marketing & Sales,Dhaka,Bangla-English,30000,41000,Contract,0,0,0,0,1,synthetic
+JA077,2026-09-13,Social Media Group,Marketing & Sales,Dhaka,English,46000,57000,Freelance,0,0,0,0,0,synthetic
+JA078,2026-08-26,Job Portal,Teaching,Dhaka,English,24000,34000,Freelance,0,0,0,0,0,synthetic
+JA079,2026-09-28,Company Website,Software & IT,Dhaka,Bangla-English,41000,54000,Internship,0,0,0,0,0,synthetic
+JA080,2026-09-03,Company Website,Online Income,Dhaka,Bangla,24000,27000,Freelance,0,0,0,0,0,synthetic
+JA081,2026-08-09,Social Media Group,Accounting,Remote,English,65000,115000,Full-time,0,1,0,1,0,synthetic
+JA082,2026-09-07,Company Website,Data Entry,Barishal,Bangla-English,13000,27000,Internship,0,0,0,0,0,synthetic
+JA083,2026-08-28,Job Portal,Customer Service,Sylhet,Bangla-English,20000,28000,Full-time,0,0,0,0,0,synthetic
+JA084,2026-08-28,Social Media Group,Software & IT,Dhaka,Bangla,145000,190000,Part-time,1,1,0,0,1,synthetic
+JA085,2026-08-21,Job Portal,Online Income,Remote,English,,,Internship,1,0,1,1,1,synthetic
+JA086,2026-08-26,Messaging Channel,Data Entry,Dhaka,English,14000,20000,Full-time,0,0,1,0,0,synthetic
+JA087,2026-08-14,Messaging Channel,Software & IT,Dhaka,Bangla-English,41000,44000,Part-time,0,0,0,0,0,synthetic
+JA088,2026-08-18,Job Portal,Online Income,Dhaka,English,23000,31000,Internship,0,0,0,0,0,synthetic
+JA089,2026-09-12,Company Website,Teaching,Remote,Bangla,23000,33000,Full-time,0,0,0,0,0,synthetic
+JA090,2026-08-08,Company Website,Marketing & Sales,Chattogram,Bangla,100000,125000,Freelance,0,1,0,0,0,synthetic
+JA091,2026-09-14,Job Portal,Teaching,Khulna,English,105000,135000,Internship,0,1,1,0,0,synthetic
+JA092,2026-08-23,Job Portal,Marketing & Sales,Chattogram,Bangla-English,49000,55000,Full-time,0,0,0,0,0,synthetic
+JA093,2026-09-02,Job Portal,Accounting,Chattogram,Bangla-English,51000,60000,Full-time,0,0,0,0,0,synthetic
+JA094,2026-08-14,Job Portal,Teaching,Dhaka,Bangla-English,31000,39000,Contract,0,0,0,0,0,synthetic
+JA095,2026-09-01,Social Media Group,Data Entry,Dhaka,Bangla-English,16000,27000,Contract,0,0,0,0,0,synthetic
+JA096,2026-08-13,Company Website,Accounting,Remote,English,,,Freelance,0,0,0,0,0,synthetic
+JA097,2026-08-02,Social Media Group,Accounting,Remote,Bangla,,,Freelance,0,1,0,0,1,synthetic
+JA098,2026-09-17,Job Portal,Accounting,Barishal,Bangla-English,37000,39000,Internship,0,0,0,1,0,synthetic
+JA099,2026-08-06,Social Media Group,Teaching,Dhaka,Bangla-English,,,Part-time,0,0,0,0,0,synthetic
+JA100,2026-08-12,Job Portal,Data Entry,Remote,Bangla,,,Full-time,0,1,1,0,0,synthetic
+JA101,2026-08-20,Messaging Channel,Data Entry,Remote,Bangla-English,60000,105000,Internship,1,1,1,1,0,synthetic
+JA102,2026-09-17,Job Portal,Customer Service,Dhaka,English,22000,34000,Internship,0,0,0,0,0,synthetic
+JA103,2026-09-27,Job Portal,Accounting,Chattogram,English,26000,38000,Internship,0,0,0,0,0,synthetic
+JA104,2026-09-27,Job Portal,Software & IT,Remote,English,101000,105000,Part-time,0,0,0,0,0,synthetic
+JA105,2026-09-24,Social Media Group,Software & IT,Rajshahi,Bangla,100000,135000,Internship,1,1,0,0,0,synthetic
+JA106,2026-08-05,Job Portal,Accounting,Dhaka,Bangla-English,33000,46000,Contract,0,0,0,1,0,synthetic
+JA107,2026-08-13,Company Website,Customer Service,Dhaka,Bangla-English,25000,38000,Internship,0,0,1,0,0,synthetic
+JA108,2026-09-13,Social Media Group,Online Income,Khulna,Bangla-English,80000,125000,Part-time,1,1,1,1,0,synthetic
+JA109,2026-08-13,Company Website,Teaching,Dhaka,Bangla,18000,31000,Part-time,0,0,0,1,0,synthetic
+JA110,2026-09-07,Messaging Channel,Online Income,Dhaka,Bangla,120000,185000,Freelance,1,1,1,1,0,synthetic
+JA111,2026-09-24,Social Media Group,Software & IT,Dhaka,Bangla-English,65000,115000,Freelance,0,1,0,0,0,synthetic
+JA112,2026-09-20,Messaging Channel,Data Entry,Remote,Bangla,17000,27000,Full-time,0,0,1,0,1,synthetic
+JA113,2026-08-27,Job Portal,Software & IT,Dhaka,English,,,Full-time,0,0,0,1,0,synthetic
+JA114,2026-08-17,Job Portal,Data Entry,Dhaka,Bangla-English,,,Freelance,0,0,0,0,0,synthetic
+JA115,2026-09-17,Social Media Group,Teaching,Dhaka,English,21000,34000,Internship,0,0,0,0,0,synthetic
+JA116,2026-09-15,Company Website,Marketing & Sales,Chattogram,Bangla,80000,120000,Part-time,0,1,0,1,1,synthetic
+JA117,2026-08-08,Social Media Group,Online Income,Rajshahi,Bangla-English,14000,27000,Full-time,0,0,0,0,0,synthetic
+JA118,2026-08-15,Job Portal,Teaching,Rajshahi,Bangla-English,95000,130000,Freelance,0,1,1,1,1,synthetic
+JA119,2026-09-01,Job Portal,Marketing & Sales,Khulna,Bangla-English,20000,25000,Part-time,0,0,0,0,0,synthetic
+JA120,2026-09-24,Messaging Channel,Accounting,Remote,Bangla,,,Freelance,1,0,0,1,1,synthetic
+JA010,2026-09-23,Social Media Group,Teaching,Dhaka,English,33000,37000,Part-time,0,0,0,0,0,synthetic
