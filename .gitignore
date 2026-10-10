@@ -1,0 +1,20 @@
+# R / RStudio
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+*.Rcheck/
+rsconnect/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Generated data (recreate with source("R/run_all.R"))
+data/processed/*
+!data/processed/.gitkeep
+
+# Private / raw collected data - never commit personal information
+data/raw/
+data/private/
+*.private.csv
