@@ -93,7 +93,7 @@ footer{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18p
 footer a{color:var(--accent)}
 @media (prefers-reduced-motion:no-preference){.bar .fl,.seg{transition:width .3s ease}}
 </style>
-<style>:root{}body{margin:0}[hidden]{display:none!important}</style>
+<style>body{margin:0}[hidden]{display:none!important}</style>
 </head>
 <body>
 <div class="wrap">
@@ -114,22 +114,26 @@ footer a{color:var(--accent)}
     <div class="grid">
       <div class="panel">
         <div>
-          <h2>Advertisement text</h2>
-          <p class="hint" style="margin:4px 0 0">Works with English, Bangla or mixed text. Nothing leaves your browser.</p>
+          <h2>Check your own ad</h2>
+          <p class="hint" style="margin:4px 0 0">Copy the job ad from Facebook, a website or a message, paste it below, then press Check. Works with English, Bangla or mixed text. Nothing leaves your browser.</p>
         </div>
         <div>
-          <label class="lbl" for="adtext">Paste the advertisement</label>
-          <textarea id="adtext" spellcheck="false"></textarea>
+          <label class="lbl" for="adtext">Paste the job advertisement here</label>
+          <textarea id="adtext" spellcheck="false" placeholder="Paste the job ad text here, then press Check this ad"></textarea>
         </div>
         <div class="row">
-          <button class="btn primary" id="btn-scam">Load example: risky ad</button>
-          <button class="btn" id="btn-ok">Load example: ordinary ad</button>
-          <button class="btn" id="btn-clear">Clear</button>
+          <button class="btn primary" id="btn-check">Check this ad</button>
+          <button class="btn" id="btn-clear">Clear and paste my own</button>
+        </div>
+        <div class="row" style="border-top:1px solid var(--line);padding-top:12px">
+          <span class="hint">Just want to see how it works? Try an example:</span>
+          <button class="btn" id="btn-scam">Risky example</button>
+          <button class="btn" id="btn-ok">Ordinary example</button>
         </div>
         <p class="hint" style="margin:0">Both examples are made up for demonstration.</p>
       </div>
 
-      <div class="panel" aria-live="polite">
+      <div class="panel" id="result" aria-live="polite">
         <div class="verdict">
           <div class="score"><span id="score">0</span><small> / 5</small></div>
           <span class="pill Low" id="level">Low</span>
@@ -163,8 +167,7 @@ footer a{color:var(--accent)}
   </section>
 
   <footer>
-    <span>Code, data and method: <a href="https://github.com/Sohan-Rana/BanglaJobInsight" target="_blank" rel="noopener">github.com/Sohan-Rana/BanglaJobInsight</a></span>
-    <span>Score = number of warning signs (0 to 5). Low 0-1, Medium 2-3, High 4-5.</span>
+    <span>Built by Sohan Rana</span>
   </footer>
 </div>
 
@@ -256,13 +259,13 @@ function renderScore(){
     var on=boxes[f.k].checked; if(on)s++;
     boxes[f.k].parentNode.classList.toggle("on",on);
   });
-  var lv=levelOf(s);
+  var lv=levelOf(s), empty=adtext.value.trim()==="" && s===0;
   $("score").textContent=s;
-  var p=$("level"); p.textContent=lv+" risk"; p.className="pill "+lv;
+  var p=$("level"); p.textContent=empty?"Waiting for an ad":lv+" risk"; p.className="pill "+lv;
   var colour="var(--"+(lv==="High"?"high":lv==="Medium"?"med":"low")+")";
   var m=$("meter"); m.innerHTML=""; m.style.setProperty("--c",colour);
   for(var i=0;i<5;i++){var e=document.createElement("i"); if(i<s)e.className="f"; m.appendChild(e)}
-  $("advice").textContent=ADVICE[lv];
+  $("advice").textContent=empty?"Paste a job advertisement on the left and press Check this ad.":ADVICE[lv];
 }
 function runAnalysis(){
   var r=analyze(adtext.value);
@@ -276,6 +279,11 @@ adtext.addEventListener("input",runAnalysis);
 $("btn-scam").addEventListener("click",function(){adtext.value=EX_BAD;runAnalysis()});
 $("btn-ok").addEventListener("click",function(){adtext.value=EX_OK;runAnalysis()});
 $("btn-clear").addEventListener("click",function(){adtext.value="";runAnalysis();adtext.focus()});
+$("btn-check").addEventListener("click",function(){
+  runAnalysis();
+  if(adtext.value.trim()==="")return adtext.focus();
+  var r=$("result"); if(r.scrollIntoView) r.scrollIntoView({behavior:"smooth",block:"start"});
+});
 adtext.value=EX_BAD; runAnalysis();
 
 /* ---------- dashboard view ---------- */
