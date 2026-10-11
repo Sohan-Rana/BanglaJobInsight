@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BanglaJobInsight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=Hind+Siliguri:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow-header tool. Tabs switch between the ad checker and the market dashboard. */
+:root{
+  --bg:#F3F6F8; --surface:#FFFFFF; --ink:#13212B; --muted:#56687A; --line:#D9E1E8;
+  --accent:#0B6E8A; --accent-ink:#FFFFFF;
+  --low:#2A8A57; --med:#A86F12; --high:#BE3A2D;
+  --f-display:"Bricolage Grotesque","Hind Siliguri",system-ui,sans-serif;
+  --f-body:"Hind Siliguri",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D151B; --surface:#14202A; --ink:#E5EDF2; --muted:#92A3B0; --line:#24343F;
+    --accent:#4FB3D0; --accent-ink:#06222C;
+    --low:#4CC38A; --med:#E0A94A; --high:#F0766A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D151B; --surface:#14202A; --ink:#E5EDF2; --muted:#92A3B0; --line:#24343F;
+  --accent:#4FB3D0; --accent-ink:#06222C;
+  --low:#4CC38A; --med:#E0A94A; --high:#F0766A; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:20px 40px}
+.wrap{max-width:1040px;margin-inline:auto;display:flex;flex-direction:column;gap:20px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+h1{font-family:var(--f-display);font-size:clamp(26px,5vw,36px);line-height:1.1;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);margin:6px 0 0;max-width:62ch}
+.tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px}
+.tabs button{font:inherit;font-weight:500;border:0;background:transparent;color:var(--muted);padding:8px 16px;border-radius:7px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.note{border:1px solid var(--line);border-left:4px solid var(--med);background:var(--surface);padding:10px 14px;border-radius:8px;font-size:14px;color:var(--muted)}
+.note strong{color:var(--ink)}
+.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:820px){.grid{grid-template-columns:minmax(0,1fr)}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px;min-width:0}
+h2{font-family:var(--f-display);font-size:19px;margin:0}
+h3{font-family:var(--f-display);font-size:15px;margin:0;font-weight:600}
+label.lbl{font-size:13px;color:var(--muted);font-weight:500;letter-spacing:.02em}
+textarea{width:100%;min-height:210px;resize:vertical;font:inherit;font-size:15px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;line-height:1.5}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{font:inherit;font-size:14px;font-weight:500;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:7px 12px;border-radius:8px;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.hint{font-size:13px;color:var(--muted)}
+.signs{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.sign{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;align-items:start;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.sign.on{border-color:var(--high);background:color-mix(in srgb,var(--high) 10%,var(--surface))}
+.sign input{margin-top:5px;width:17px;height:17px;accent-color:var(--high)}
+.sign .t{font-weight:600;font-size:15px}
+.sign .why{grid-column:2;font-family:var(--f-mono);font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.verdict{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.score{font-family:var(--f-display);font-size:56px;line-height:1;font-weight:700}
+.score small{font-size:20px;color:var(--muted);font-weight:600}
+.pill{display:inline-block;font-weight:600;font-size:14px;padding:4px 12px;border-radius:999px;border:1px solid currentColor}
+.pill.Low{color:var(--low)}.pill.Medium{color:var(--med)}.pill.High{color:var(--high)}
+.meter{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;width:100%}
+.meter i{height:8px;border-radius:3px;background:var(--line)}
+.meter i.f{background:var(--c)}
+.advice{margin:0;font-size:15px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:700px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.kpi .k{font-size:13px;color:var(--muted)}
+.kpi .v{font-family:var(--f-display);font-size:28px;font-weight:700;line-height:1.2;font-variant-numeric:tabular-nums}
+.filters{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.filters div{display:flex;flex-direction:column;gap:4px}
+select{font:inherit;font-size:14px;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:160px;max-width:100%}
+.bars{display:flex;flex-direction:column;gap:9px}
+.bar{display:grid;grid-template-columns:minmax(90px,150px) minmax(0,1fr) 64px;gap:10px;align-items:center;font-size:14px}
+.bar .n{overflow-wrap:anywhere}
+.bar .tr{height:14px;background:var(--bg);border:1px solid var(--line);border-radius:4px;overflow:hidden;display:flex}
+.bar .fl{height:100%;background:var(--accent)}
+.bar .v{font-family:var(--f-mono);font-size:12.5px;text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.seg.Low{background:var(--low)}.seg.Medium{background:var(--med)}.seg.High{background:var(--high)}
+.seg{height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;background:var(--c)}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:820px){.cols{grid-template-columns:minmax(0,1fr)}}
+.empty{color:var(--muted);font-size:14px}
+footer{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion:no-preference){.bar .fl,.seg{transition:width .3s ease}}
+</style>
+<style>:root{}body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>BanglaJobInsight</h1>
+      <p class="sub">Paste a job advertisement to see how many warning signs it shows, or explore how those signs spread across job types and sources.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tab-check" aria-selected="true" aria-controls="view-check">Check an ad</button>
+      <button role="tab" id="tab-dash" aria-selected="false" aria-controls="view-dash">Market dashboard</button>
+    </div>
+  </header>
+
+  <div class="note"><strong>A score is a prompt to verify, not a verdict.</strong> A legitimate employer can show some signs, and a scam can show none. Check the company independently before sharing documents or paying anything.</div>
+
+  <section id="view-check" role="tabpanel" aria-labelledby="tab-check">
+    <div class="grid">
+      <div class="panel">
+        <div>
+          <h2>Advertisement text</h2>
+          <p class="hint" style="margin:4px 0 0">Works with English, Bangla or mixed text. Nothing leaves your browser.</p>
+        </div>
+        <div>
+          <label class="lbl" for="adtext">Paste the advertisement</label>
+          <textarea id="adtext" spellcheck="false"></textarea>
+        </div>
+        <div class="row">
+          <button class="btn primary" id="btn-scam">Load example: risky ad</button>
+          <button class="btn" id="btn-ok">Load example: ordinary ad</button>
+          <button class="btn" id="btn-clear">Clear</button>
+        </div>
+        <p class="hint" style="margin:0">Both examples are made up for demonstration.</p>
+      </div>
+
+      <div class="panel" aria-live="polite">
+        <div class="verdict">
+          <div class="score"><span id="score">0</span><small> / 5</small></div>
+          <span class="pill Low" id="level">Low</span>
+        </div>
+        <div class="meter" id="meter"></div>
+        <p class="advice" id="advice"></p>
+        <h3>Warning signs found</h3>
+        <p class="hint" style="margin:-8px 0 0">Detected automatically. Tick or untick any box to correct it.</p>
+        <ul class="signs" id="signs"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="view-dash" role="tabpanel" aria-labelledby="tab-dash" hidden>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <div class="note" style="border-left-color:var(--accent)"><strong>Synthetic sample data.</strong> These 120 advertisements were generated to demonstrate the analysis. They are not real statistics about Bangladesh.</div>
+      <div class="filters">
+        <div><label class="lbl" for="f-cat">Job category</label><select id="f-cat"></select></div>
+        <div><label class="lbl" for="f-src">Source</label><select id="f-src"></select></div>
+        <div><label class="lbl" for="f-city">City</label><select id="f-city"></select></div>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="cols">
+        <div class="panel"><h2>Risk level</h2><div class="bars" id="b-level"></div></div>
+        <div class="panel"><h2>How common is each warning sign?</h2><div class="bars" id="b-signs"></div></div>
+        <div class="panel"><h2>Average risk score by job category</h2><div class="bars" id="b-cat"></div></div>
+        <div class="panel"><h2>Risk mix by source</h2><div class="legend" id="lg"></div><div class="bars" id="b-src"></div></div>
+        <div class="panel" style="grid-column:1/-1"><h2>Median advertised salary by category (BDT per month)</h2><div class="bars" id="b-sal"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Code, data and method: <a href="https://github.com/Sohan-Rana/BanglaJobInsight" target="_blank" rel="noopener">github.com/Sohan-Rana/BanglaJobInsight</a></span>
+    <span>Score = number of warning signs (0 to 5). Low 0-1, Medium 2-3, High 4-5.</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+"use strict";
+var DATA = [["Data Entry","Remote","Job Portal",25000.0,0,0,0,0,0],["Data Entry","Mymensingh","Social Media Group",122500.0,0,1,0,0,0],["Teaching","Dhaka","Job Portal",21500.0,0,0,0,0,0],["Online Income","Remote","Company Website",18000.0,1,0,0,1,0],["Accounting","Dhaka","Job Portal",40500.0,0,0,0,0,0],["Marketing & Sales","Mymensingh","Social Media Group",70000.0,0,1,1,0,1],["Customer Service","Barishal","Job Portal",22500.0,0,0,0,0,0],["Software & IT","Dhaka","Company Website",null,0,0,0,0,0],["Data Entry","Dhaka","Job Portal",23000.0,0,0,0,0,0],["Teaching","Dhaka","Social Media Group",35000.0,0,0,0,0,0],["Customer Service","Sylhet","Social Media Group",16500.0,0,0,0,0,0],["Accounting","Remote","Messaging Channel",59500.0,1,0,1,0,1],["Marketing & Sales","Barishal","Social Media Group",30000.0,0,0,0,1,0],["Marketing & Sales","Khulna","Social Media Group",34000.0,0,0,0,0,0],["Accounting","Dhaka","Job Portal",56000.0,0,0,0,0,0],["Accounting","Remote","Job Portal",95000.0,0,1,0,0,0],["Accounting","Dhaka","Company Website",48000.0,0,0,0,0,0],["Data Entry","Chattogram","Social Media Group",16000.0,0,0,0,0,0],["Marketing & Sales","Chattogram","Messaging Channel",30000.0,0,0,0,0,0],["Teaching","Rajshahi","Social Media Group",24000.0,0,0,0,0,0],["Data Entry","Remote","Social Media Group",16000.0,1,0,1,0,0],["Online Income","Sylhet","Job Portal",null,0,0,1,0,0],["Marketing & Sales","Dhaka","Job Portal",46000.0,0,0,0,0,0],["Marketing & Sales","Dhaka","Company Website",37500.0,0,0,0,0,0],["Teaching","Remote","Messaging Channel",33500.0,0,0,0,0,0],["Accounting","Dhaka","Job Portal",39000.0,0,0,0,0,0],["Teaching","Remote","Company Website",162500.0,1,1,1,1,0],["Marketing & Sales","Remote","Company Website",45500.0,0,0,0,0,0],["Customer Service","Mymensingh","Messaging Channel",160000.0,1,1,1,0,0],["Software & IT","Remote","Company Website",83500.0,0,0,0,0,1],["Customer Service","Remote","Job Portal",19500.0,0,0,0,0,0],["Accounting","Chattogram","Job Portal",47000.0,0,0,0,0,0],["Online Income","Khulna","Job Portal",19500.0,0,0,0,0,0],["Data Entry","Dhaka","Job Portal",25000.0,0,0,0,0,0],["Online Income","Remote","Social Media Group",null,0,0,1,1,1],["Marketing & Sales","Rangpur","Job Portal",44500.0,0,0,1,0,0],["Data Entry","Remote","Social Media Group",23000.0,0,0,0,0,0],["Online Income","Dhaka","Social Media Group",null,0,0,0,0,0],["Marketing & Sales","Rangpur","Job Portal",42500.0,0,0,0,0,0],["Data Entry","Dhaka","Social Media Group",140000.0,1,1,0,1,1],["Teaching","Dhaka","Company Website",33500.0,0,0,0,0,0],["Accounting","Mymensingh","Job Portal",39000.0,0,0,0,0,0],["Online Income","Dhaka","Job Portal",21000.0,0,0,0,0,0],["Teaching","Dhaka","Messaging Channel",19000.0,0,0,0,0,0],["Teaching","Mymensingh","Job Portal",35000.0,0,0,0,0,0],["Data Entry","Chattogram","Company Website",16500.0,0,0,0,1,1],["Online Income","Khulna","Job Portal",19500.0,0,0,0,0,0],["Teaching","Sylhet","Job Portal",27500.0,0,0,0,0,0],["Teaching","Chattogram","Job Portal",25000.0,0,0,0,0,0],["Marketing & Sales","Remote","Job Portal",35500.0,0,0,0,0,0],["Teaching","Mymensingh","Job Portal",null,0,0,0,0,0],["Data Entry","Remote","Company Website",null,0,0,0,1,0],["Data Entry","Rajshahi","Social Media Group",117500.0,0,1,0,0,0],["Accounting","Rajshahi","Messaging Channel",53500.0,0,0,0,0,0],["Online Income","Dhaka","Company Website",155000.0,1,1,1,1,0],["Online Income","Chattogram","Job Portal",115000.0,1,1,0,1,1],["Customer Service","Dhaka","Social Media Group",30500.0,0,0,0,0,0],["Data Entry","Rangpur","Job Portal",160000.0,1,1,1,0,1],["Software & IT","Rajshahi","Job Portal",102500.0,0,1,0,0,0],["Marketing & Sales","Dhaka","Job Portal",54500.0,0,0,0,0,0],["Data Entry","Chattogram","Job Portal",18500.0,0,0,0,0,0],["Marketing & Sales","Barishal","Messaging Channel",19000.0,0,0,0,0,0],["Customer Service","Chattogram","Social Media Group",20500.0,0,0,0,0,0],["Online Income","Chattogram","Job Portal",95000.0,0,1,0,1,0],["Teaching","Dhaka","Social Media Group",40000.0,0,0,0,0,0],["Customer Service","Dhaka","Social Media Group",157500.0,1,1,1,1,1],["Software & IT","Dhaka","Job Portal",89000.0,0,0,0,0,0],["Software & IT","Sylhet","Social Media Group",103000.0,0,0,0,0,0],["Customer Service","Dhaka","Job Portal",28000.0,0,0,0,0,0],["Customer Service","Remote","Company Website",17500.0,0,0,0,0,0],["Teaching","Remote","Job Portal",137500.0,0,1,0,0,0],["Online Income","Khulna","Job Portal",null,1,1,0,0,0],["Marketing & Sales","Dhaka","Job Portal",null,0,0,0,0,0],["Accounting","Khulna","Job Portal",35500.0,0,0,0,0,0],["Software & IT","Dhaka","Job Portal",96000.0,0,0,0,0,0],["Marketing & Sales","Dhaka","Job Portal",35500.0,0,0,0,0,1],["Marketing & Sales","Dhaka","Social Media Group",51500.0,0,0,0,0,0],["Teaching","Dhaka","Job Portal",29000.0,0,0,0,0,0],["Software & IT","Dhaka","Company Website",47500.0,0,0,0,0,0],["Online Income","Dhaka","Company Website",25500.0,0,0,0,0,0],["Accounting","Remote","Social Media Group",90000.0,0,1,0,1,0],["Data Entry","Barishal","Company Website",20000.0,0,0,0,0,0],["Customer Service","Sylhet","Job Portal",24000.0,0,0,0,0,0],["Software & IT","Dhaka","Social Media Group",167500.0,1,1,0,0,1],["Online Income","Remote","Job Portal",null,1,0,1,1,1],["Data Entry","Dhaka","Messaging Channel",17000.0,0,0,1,0,0],["Software & IT","Dhaka","Messaging Channel",42500.0,0,0,0,0,0],["Online Income","Dhaka","Job Portal",27000.0,0,0,0,0,0],["Teaching","Remote","Company Website",28000.0,0,0,0,0,0],["Marketing & Sales","Chattogram","Company Website",112500.0,0,1,0,0,0],["Teaching","Khulna","Job Portal",120000.0,0,1,1,0,0],["Marketing & Sales","Chattogram","Job Portal",52000.0,0,0,0,0,0],["Accounting","Chattogram","Job Portal",55500.0,0,0,0,0,0],["Teaching","Dhaka","Job Portal",35000.0,0,0,0,0,0],["Data Entry","Dhaka","Social Media Group",21500.0,0,0,0,0,0],["Accounting","Remote","Company Website",null,0,0,0,0,0],["Accounting","Remote","Social Media Group",null,0,1,0,0,1],["Accounting","Barishal","Job Portal",38000.0,0,0,0,1,0],["Teaching","Dhaka","Social Media Group",null,0,0,0,0,0],["Data Entry","Remote","Job Portal",null,0,1,1,0,0],["Data Entry","Remote","Messaging Channel",82500.0,1,1,1,1,0],["Customer Service","Dhaka","Job Portal",28000.0,0,0,0,0,0],["Accounting","Chattogram","Job Portal",32000.0,0,0,0,0,0],["Software & IT","Remote","Job Portal",103000.0,0,0,0,0,0],["Software & IT","Rajshahi","Social Media Group",117500.0,1,1,0,0,0],["Accounting","Dhaka","Job Portal",39500.0,0,0,0,1,0],["Customer Service","Dhaka","Company Website",31500.0,0,0,1,0,0],["Online Income","Khulna","Social Media Group",102500.0,1,1,1,1,0],["Teaching","Dhaka","Company Website",24500.0,0,0,0,1,0],["Online Income","Dhaka","Messaging Channel",152500.0,1,1,1,1,0],["Software & IT","Dhaka","Social Media Group",90000.0,0,1,0,0,0],["Data Entry","Remote","Messaging Channel",22000.0,0,0,1,0,1],["Software & IT","Dhaka","Job Portal",null,0,0,0,1,0],["Data Entry","Dhaka","Job Portal",null,0,0,0,0,0],["Teaching","Dhaka","Social Media Group",27500.0,0,0,0,0,0],["Marketing & Sales","Chattogram","Company Website",100000.0,0,1,0,1,1],["Online Income","Rajshahi","Social Media Group",20500.0,0,0,0,0,0],["Teaching","Rajshahi","Job Portal",112500.0,0,1,1,1,1],["Marketing & Sales","Khulna","Job Portal",22500.0,0,0,0,0,0],["Accounting","Remote","Messaging Channel",null,1,0,0,1,1]];
+var FLAGS = [
+  {k:"asks_money", t:"Asks for money up front", h:"Registration, training or security fee"},
+  {k:"unrealistic_salary", t:"Unrealistic pay for the role", h:"Very high pay for entry-level work"},
+  {k:"no_company_info", t:"No verifiable company details", h:"No company name, website or address"},
+  {k:"only_chat_contact", t:"Chat-app contact only", h:"WhatsApp, Telegram or inbox, with no email or website"},
+  {k:"no_experience_claim", t:"“No experience, earn from home” claim", h:"Easy money promises"}
+];
+var ADVICE = {
+  Low:"Few warning signs. Still confirm the employer exists before you share personal documents.",
+  Medium:"Several warning signs. Search for the company, ask for an official email, and do not pay anything.",
+  High:"Many warning signs. Treat this as risky. Do not pay, do not send ID documents, and verify the employer through an official channel."
+};
+var EX_BAD = "URGENT HIRING! Data Entry / Typing job, work from home. No experience needed, no skills required.\nEarn up to 90,000 taka per month, payment every day.\nJoining: pay 1,500 taka registration fee via bkash to confirm your seat.\nContact only on WhatsApp: message us now.\n\nঘরে বসে আয় করুন, কোনো অভিজ্ঞতা লাগবে না।";
+var EX_OK = "Junior Accounts Executive — Northbridge Trading Ltd., Dhaka.\nRequirements: B.Com in Accounting, 1 year experience with Tally.\nSalary: 28,000 - 35,000 BDT per month.\nOffice: Level 4, 12 Kemal Ataturk Avenue, Banani, Dhaka.\nApply with your CV at careers@northbridge-example.com or through www.northbridge-example.com/careers";
+
+function bn2en(s){return s.replace(/[০-৯]/g,function(c){return String(c.charCodeAt(0)-0x09E6)})}
+function uniq(a){var o=[];a.forEach(function(x){if(o.indexOf(x)<0)o.push(x)});return o}
+function hits(re,t){var m=t.match(re);return m?uniq(m.map(function(x){return x.trim()})).slice(0,3):[]}
+
+var RE = {
+  money:/registration fee|security deposit|processing fee|training fee|joining fee|pay (?:a |the )?fee|advance payment|refundable deposit|send (?:money|tk|taka)|bkash|nagad|rocket|রেজিস্ট্রেশন ফি|জামানত|অগ্রিম|ফি দিতে|টাকা পাঠা|জমা দিতে|বিকাশ|নগদ/gi,
+  claim:/no experience|without experience|no skills? (?:needed|required)|earn from home|earn at home|easy money|daily payment|payment every day|ঘরে বসে|অভিজ্ঞতা লাগবে না|কোনো অভিজ্ঞতা|প্রতিদিন পেমেন্ট/gi,
+  entry:/data entry|typing|no experience|work from home|home[- ]based|part[- ]time|online job|ঘরে বসে|অভিজ্ঞতা লাগবে না|টাইপিং/i,
+  company:/\bcompany\b|\bltd\b|\blimited\b|\bpvt\b|\binc\b|\bcorp\b|www\.|https?:\/\/|\.com\b|\.com\.bd|\.bd\b|\baddress\b|\boffice\b|road|avenue|কোম্পানি|লিমিটেড|ঠিকানা|অফিস/i,
+  chat:/whatsapp|telegram|\bimo\b|messenger|inbox|dm us|হোয়াটসঅ্যাপ|টেলিগ্রাম|ইনবক্স|ইমো/gi,
+  official:/[\w.+-]+@[\w-]+\.[\w.-]+|www\.|https?:\/\/|apply (?:at|via|through) (?:our )?(?:website|portal|career)/i
+};
+
+function salaryMonthly(t){
+  var s=bn2en(t).replace(/(\d),(?=\d{3})/g,"$1");
+  var daily=/per day|daily|a day|every day|প্রতিদিন|দৈনিক/i.test(s);
+  var weekly=/per week|weekly|সাপ্তাহিক/i.test(s);
+  var re=/(\d+(?:\.\d+)?)\s*(k\b|thousand|lakh|lac|হাজার|লাখ)?/gi, m, best=0, shown="";
+  while((m=re.exec(s))!==null){
+    if(m[1].length>=8) continue;           // phone numbers
+    var v=parseFloat(m[1]), u=(m[2]||"").toLowerCase();
+    if(u==="k"||u==="thousand"||u==="হাজার") v*=1000;
+    else if(u==="lakh"||u==="lac"||u==="লাখ") v*=100000;
+    if(v<1000) continue;
+    var mo=daily?v*26:(weekly?v*4:v);
+    if(mo>best){best=mo;shown=m[0].trim()}
+  }
+  return {amount:best,shown:shown};
+}
+
+function analyze(text){
+  var t=text||"", out={};
+  var money=hits(RE.money,t);
+  out.asks_money={on:money.length>0,why:money};
+  var claim=hits(RE.claim,t);
+  out.no_experience_claim={on:claim.length>0,why:claim};
+  var sal=salaryMonthly(t), entry=RE.entry.test(t);
+  var salOn=sal.amount>=60000 && entry;
+  out.unrealistic_salary={on:salOn,why:salOn?["about "+Math.round(sal.amount).toLocaleString("en-US")+" BDT per month ("+sal.shown+")"]:[]};
+  var hasCo=RE.company.test(t);
+  out.no_company_info={on:t.trim().length>0 && !hasCo,why:(t.trim().length>0&&!hasCo)?["no company name, website or address found"]:[]};
+  var chat=hits(RE.chat,t), official=RE.official.test(t);
+  var chatOn=chat.length>0 && !official;
+  out.only_chat_contact={on:chatOn,why:chatOn?chat:[]};
+  return out;
+}
+
+/* ---------- checker view ---------- */
+var $=function(id){return document.getElementById(id)};
+var adtext=$("adtext"), signsEl=$("signs");
+var boxes={}, whyEls={};
+FLAGS.forEach(function(f){
+  var li=document.createElement("li"); li.className="sign";
+  var cb=document.createElement("input"); cb.type="checkbox"; cb.id="cb-"+f.k;
+  var box=document.createElement("label"); box.setAttribute("for",cb.id);
+  box.innerHTML='<div class="t"></div><div class="hint"></div>';
+  box.firstChild.textContent=f.t; box.lastChild.textContent=f.h;
+  var why=document.createElement("div"); why.className="why";
+  li.appendChild(cb); li.appendChild(box); li.appendChild(why);
+  signsEl.appendChild(li); boxes[f.k]=cb; whyEls[f.k]=why;
+  cb.addEventListener("change",renderScore);
+});
+function levelOf(s){return s>=4?"High":(s>=2?"Medium":"Low")}
+function renderScore(){
+  var s=0;
+  FLAGS.forEach(function(f){
+    var on=boxes[f.k].checked; if(on)s++;
+    boxes[f.k].parentNode.classList.toggle("on",on);
+  });
+  var lv=levelOf(s);
+  $("score").textContent=s;
+  var p=$("level"); p.textContent=lv+" risk"; p.className="pill "+lv;
+  var colour="var(--"+(lv==="High"?"high":lv==="Medium"?"med":"low")+")";
+  var m=$("meter"); m.innerHTML=""; m.style.setProperty("--c",colour);
+  for(var i=0;i<5;i++){var e=document.createElement("i"); if(i<s)e.className="f"; m.appendChild(e)}
+  $("advice").textContent=ADVICE[lv];
+}
+function runAnalysis(){
+  var r=analyze(adtext.value);
+  FLAGS.forEach(function(f){
+    boxes[f.k].checked=r[f.k].on;
+    whyEls[f.k].textContent=r[f.k].on?("Found: "+r[f.k].why.join("  |  ")):"";
+  });
+  renderScore();
+}
+adtext.addEventListener("input",runAnalysis);
+$("btn-scam").addEventListener("click",function(){adtext.value=EX_BAD;runAnalysis()});
+$("btn-ok").addEventListener("click",function(){adtext.value=EX_OK;runAnalysis()});
+$("btn-clear").addEventListener("click",function(){adtext.value="";runAnalysis();adtext.focus()});
+adtext.value=EX_BAD; runAnalysis();
+
+/* ---------- dashboard view ---------- */
+var ROWS=DATA.map(function(r){
+  var s=r[4]+r[5]+r[6]+r[7]+r[8];
+  return {cat:r[0],city:r[1],src:r[2],sal:r[3],f:[r[4],r[5],r[6],r[7],r[8]],score:s,level:levelOf(s)};
+});
+function fillSelect(id,key){
+  var el=$(id), vals=uniq(ROWS.map(function(r){return r[key]})).sort();
+  el.innerHTML=""; ["All"].concat(vals).forEach(function(v){
+    var o=document.createElement("option"); o.value=v; o.textContent=v; el.appendChild(o)});
+  el.addEventListener("change",renderDash);
+}
+fillSelect("f-cat","cat"); fillSelect("f-src","src"); fillSelect("f-city","city");
+
+function mean(a){return a.length?a.reduce(function(x,y){return x+y},0)/a.length:0}
+function median(a){if(!a.length)return null;var b=a.slice().sort(function(x,y){return x-y}),h=b.length>>1;return b.length%2?b[h]:(b[h-1]+b[h])/2}
+function pct(x){return (x*100).toFixed(0)+"%"}
+function fmt(n){return Math.round(n).toLocaleString("en-US")}
+function bar(parent,name,frac,valText,colour){
+  var d=document.createElement("div"); d.className="bar";
+  var n=document.createElement("div"); n.className="n"; n.textContent=name;
+  var tr=document.createElement("div"); tr.className="tr";
+  var fl=document.createElement("div"); fl.className="fl"; fl.style.width=Math.max(0,Math.min(1,frac))*100+"%";
+  if(colour)fl.style.background=colour;
+  tr.appendChild(fl);
+  var v=document.createElement("div"); v.className="v"; v.textContent=valText;
+  d.appendChild(n);d.appendChild(tr);d.appendChild(v); parent.appendChild(d);
+}
+function emptyMsg(el){el.innerHTML='<div class="empty">No advertisements match these filters.</div>'}
+function renderDash(){
+  var c=$("f-cat").value,s=$("f-src").value,y=$("f-city").value;
+  var R=ROWS.filter(function(r){return (c==="All"||r.cat===c)&&(s==="All"||r.src===s)&&(y==="All"||r.city===y)});
+  var k=$("kpis"); k.innerHTML="";
+  var sal=median(R.filter(function(r){return r.sal!==null}).map(function(r){return r.sal}));
+  [["Advertisements",String(R.length)],["Average risk score",R.length?mean(R.map(function(r){return r.score})).toFixed(2)+" / 5":"-"],
+   ["High-risk share",R.length?pct(R.filter(function(r){return r.level==="High"}).length/R.length):"-"],
+   ["Median salary (BDT)",sal===null?"-":fmt(sal)]].forEach(function(p){
+    var d=document.createElement("div"); d.className="kpi";
+    d.innerHTML='<div class="k"></div><div class="v"></div>'; d.firstChild.textContent=p[0]; d.lastChild.textContent=p[1]; k.appendChild(d)});
+  var ids=["b-level","b-signs","b-cat","b-src","b-sal"];
+  ids.forEach(function(i){$(i).innerHTML=""});
+  if(!R.length){ids.forEach(function(i){emptyMsg($(i))});return}
+  var colour={Low:"var(--low)",Medium:"var(--med)",High:"var(--high)"};
+  ["Low","Medium","High"].forEach(function(l){
+    var n=R.filter(function(r){return r.level===l}).length;
+    bar($("b-level"),l,n/R.length,n+" ("+pct(n/R.length)+")",colour[l]);
+  });
+  FLAGS.map(function(f,i){return {t:f.t,p:mean(R.map(function(r){return r.f[i]}))}})
+    .sort(function(a,b){return b.p-a.p})
+    .forEach(function(o){bar($("b-signs"),o.t,o.p,pct(o.p))});
+  function groupBy(key){var g={};R.forEach(function(r){(g[r[key]]=g[r[key]]||[]).push(r)});return g}
+  var gc=groupBy("cat");
+  Object.keys(gc).map(function(n){return {n:n,rows:gc[n],m:mean(gc[n].map(function(r){return r.score}))}})
+    .sort(function(a,b){return b.m-a.m})
+    .forEach(function(o){bar($("b-cat"),o.n+" (n="+o.rows.length+")",o.m/5,o.m.toFixed(2))});
+  var lg=$("lg"); lg.innerHTML="";
+  ["Low","Medium","High"].forEach(function(l){var sp=document.createElement("span");sp.textContent=l;sp.style.setProperty("--c",colour[l]);lg.appendChild(sp)});
+  var gs=groupBy("src");
+  Object.keys(gs).sort().forEach(function(n){
+    var rows=gs[n], d=document.createElement("div"); d.className="bar";
+    var nm=document.createElement("div"); nm.className="n"; nm.textContent=n+" (n="+rows.length+")";
+    var tr=document.createElement("div"); tr.className="tr";
+    ["Low","Medium","High"].forEach(function(l){
+      var seg=document.createElement("div"); seg.className="seg "+l;
+      seg.style.width=(rows.filter(function(r){return r.level===l}).length/rows.length*100)+"%"; tr.appendChild(seg)});
+    var hi=document.createElement("div"); hi.className="v";
+    hi.textContent=pct(rows.filter(function(r){return r.level==="High"}).length/rows.length)+" high";
+    d.appendChild(nm);d.appendChild(tr);d.appendChild(hi); $("b-src").appendChild(d);
+  });
+  var meds=Object.keys(gc).map(function(n){return {n:n,m:median(gc[n].filter(function(r){return r.sal!==null}).map(function(r){return r.sal}))}})
+    .filter(function(o){return o.m!==null}).sort(function(a,b){return b.m-a.m});
+  var top=meds.length?meds[0].m:1;
+  meds.forEach(function(o){bar($("b-sal"),o.n,o.m/top,fmt(o.m))});
+}
+renderDash();
+
+/* ---------- tabs ---------- */
+function show(which){
+  var chk=which==="check";
+  $("view-check").hidden=!chk; $("view-dash").hidden=chk;
+  $("tab-check").setAttribute("aria-selected",chk); $("tab-dash").setAttribute("aria-selected",!chk);
+  try{localStorage.setItem("bji-tab",which)}catch(e){}
+}
+$("tab-check").addEventListener("click",function(){show("check")});
+$("tab-dash").addEventListener("click",function(){show("dash")});
+try{if(localStorage.getItem("bji-tab")==="dash")show("dash")}catch(e){}
+})();
+</script>
+
+</body>
+</html>
